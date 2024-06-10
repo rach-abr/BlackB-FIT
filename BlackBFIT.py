@@ -1,162 +1,106 @@
 '''
-Glosario de Términos de Programación
-Autor: Serbluk Sergio
-fecha: 2024
-version: 1.0
+BlackBFIT
+Autores: Rachel Herbas, Gaston .., Nestor ... , Jose ...
+Fecha: 2024
+Version: 1.0
 '''
 import os 
-import colorama # para instalar colorama (pip install colorama)
+import colorama
 import time
+
 def limpiarPantalla():
-    '''
-    funcion para limpiar la pantalla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
     os.system("cls")
     return
+
+ejercicios = {
+    "Pecho": ["Press de banca con barra, Apertura con mancuernas"],
+    "Espalda": ["Dominadas, Remo con barra"],
+    "Brazos": ["Extencion de triceps, Biceps con mancuernas"],
+    "Hombros": ["Press militar, Elevaciones laterales"],
+    "Piernas": ["Prensa de piernas, Sentadilla con barra"],
+    "Gluteos": ["Hiptrust, Sentadilla sumo con peso"]
+}
+
+pesoKg = {
+    "Pecho": [0,0],
+    "Espalda": [0,0],
+    "Brazos": [0,0],
+    "Hombros": [0,0],
+    "Piernas": [0,0],
+    "Gluteos": [0,0]
+}
+
 def menu():
-    '''
-    funcion para limpiar la pantalla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
     limpiarPantalla()
-    print(colorama.Fore.GREEN + "Glosario de Términos de Programación".center(45))
+    print(colorama.Fore.YELLOW + "BlackB FIT".center(45))
     print("="*45)
-    print(colorama.Fore.BLUE + "\t1" + colorama.Fore.RESET + " para agregar un nuevo término")
-    print(colorama.Fore.BLUE + "\t2" + colorama.Fore.RESET + " para modificar un término")
-    print(colorama.Fore.BLUE + "\t3" + colorama.Fore.RESET + " para eliminar un término")
-    print(colorama.Fore.BLUE + "\t4" + colorama.Fore.RESET + " buscar un término")
-    print(colorama.Fore.BLUE + "\t5" + colorama.Fore.RESET + " para listar todos las entradas")
-    print(colorama.Fore.BLUE + "\t6" + colorama.Fore.RESET + " para Salir")
-    op = int(input(colorama.Fore.CYAN + "seleccione una opción: " + colorama.Fore.RESET ))
+    print(colorama.Fore.YELLOW + "\t1" + colorama.Fore.RESET + " Pecho")
+    print(colorama.Fore.YELLOW + "\t2" + colorama.Fore.RESET + " Espalda")
+    print(colorama.Fore.YELLOW + "\t3" + colorama.Fore.RESET + " Brazos")
+    print(colorama.Fore.YELLOW + "\t4" + colorama.Fore.RESET + " Hombros")
+    print(colorama.Fore.YELLOW + "\t5" + colorama.Fore.RESET + " Piernas")
+    print(colorama.Fore.YELLOW + "\t6" + colorama.Fore.RESET + " Gluteos")
+    print(colorama.Fore.YELLOW + "\t7" + colorama.Fore.RESET + " Agregar/Modificar/Eliminar peso en KG")
+    print(colorama.Fore.YELLOW + "\t8" + colorama.Fore.RESET + " Salir")
+    op = int(input(colorama.Fore.MAGENTA + "Seleccione una zona a trabajar: ".center(45) + colorama.Fore.RESET ))
     return op
-def agregar(lista,termino=""):
-    '''
-    funcion para limpiar la pantalla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
-    if termino=="":
-        termino=input("ingrese un termino: ")
-        while termino == "":
-            print("el termino no puede estar vacio!!")
-            termino=input("ingrese un termino: ")
-        if termino in [ t[0] for t in lista]:
-            print("el termino ya se encuenta en el glosario!")
-            input(colorama.Fore.RED + "presione enter para continuar...")
-            return
-    definicion=input("ingrese la definicion: ")
-    while definicion=="":
-        print("la definicion no puede estar vacia! ")
-        definicion=input("ingrese la definicion: ")
-    lista.append((termino,definicion))
-    print("el termino se agrego correctamente!")
-    print(lista)
-    return
-def listar(lista):
-    '''
-    funcion para listar los datos por pantalla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
-    limpiarPantalla()
-    print("Lista de términos")
-    print("="*45)
-    for t , d in lista:
-        print(f"{t}: {d}")
-    print("Fin de la lista.")
-    
-    return
-def buscar(lista):
-    '''
-    funcion para buscar datos en el glosario y mostrar por pantalla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
-    termino=input("ingrese el término a buscar: ")
-    for t,d in lista:
-        if termino.lower()==t.lower():
-            print(f"{t}: {d}")
-            input(colorama.Fore.RED + "presione enter para continuar...")
-            return
-    res=input("término no encontrado en la lisa, lo quiere agreagar s/n: ")
-    if res.lower() == "n":
-        return
-    elif res.lower()=="s":
-        agregar(lista,termino)
-    return
-def eliminar(lista):
-    '''
-    funcion para eliminar datos de la lista
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
-    elemento=input("ingrese el término que quiere eliminar: ")
-    for t,d in lista:
-        if t.lower()==elemento.lower():
-            lista.remove((t,d))
-            print(f"término eliminado: {elemento}")
-            return
-    print(f"no se encontro '{elemento}' en la lista de términos! ")
-    return
-def modificar(lista):
-    '''
-    funcion para buscar un termino en la lista y luego modificar(reescribir) los datos de la tupla
-    Autor: Sergio Serbluk
-    fecha: 2024
-    version: 1.0
-    '''
-    termino=input("ingrese el termino a modificar: ")
-    for i in range(len(lista)):
-        if lista[i][0]==termino:
-            print(f"ternimo: {lista[i][0]}\n \t descripcion: {lista[i][1]}")
-            definicion=input("ingrese la nueva definicion: ")
-            while definicion == "":
-                print("la definicion no puede estar vacia!")
-                definicion=input("ingrese la nueva definicion: ")
-            lista[i]=(termino, definicion)
-            print("los datos se modificaron correctamente!")
-            return
-    print("el elemento no de encontro en la lista!")
-    return
-    return
+
+def gestionar_peso(zona):
+    print(f"\nGestión de pesos para {zona}:")
+    for x, ejercicio in enumerate(ejercicios[zona], 1):
+        print(f"{x}. {ejercicio} - Peso actual: {pesoKg[zona][x - 1]} kg")
+    opcion = int(input("Seleccione un ejercicio para modificar el peso (1-2): "))
+    accion = input("Desea agregar/modificar/eliminar el peso (a/m/e): ").lower()
+    if accion == 'a' or accion == 'm':
+        nuevo_peso = float(input("Ingrese el nuevo peso: "))
+        pesoKg[zona][opcion - 1] = nuevo_peso
+        print(f"Peso actualizado: {pesoKg[zona][opcion - 1]} kg")
+    elif accion == 'e':
+        pesoKg[zona][opcion - 1] = 0
+        print("Peso eliminado.")
+    else:
+        print("Acción no válida.")
 
 #programa principal
-colorama.init() #inicializamos colorama para poder usarlo
+colorama.init() 
 terminos=[]
 op = menu()
-while op !=6:
+while op !=9:
     match op:
         case 1:
             print("agregar")
             agregar(terminos)
             time.sleep(5)
-            #input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "presione enter para continuar...")
         case 2:
             print("modificar")
             modificar(terminos)
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "Presione enter para continuar...")
         case 3:
             print("eliminar")
             eliminar(terminos)
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "Presione enter para continuar...")
         case 4:
             print("buscar")
             buscar(terminos)
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "Presione enter para continuar...")
         case 5:
             print("listar todos")
             listar(terminos)
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "Presione enter para continuar...")
+        case 6:
+            print("listar todos")
+            listar(terminos)
+            input(colorama.Fore.RED + "Presione enter para continuar...")
+        case 7:
+            print("listar todos")
+            listar(terminos)
+            input(colorama.Fore.RED + "Presione enter para continuar...")
+        case 8:
+            print("listar todos")
+            listar(terminos)
+            input(colorama.Fore.RED + "Presione enter para continuar...")
         case _:
             print("error!")
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            input(colorama.Fore.RED + "Presione enter para continuar...")
     op = menu()
