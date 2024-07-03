@@ -1,0 +1,30 @@
+{
+    "12345678": {
+        "nombre": "Rachel",
+        "apellido": "H",
+        "dni": "12345678",
+        "fecha_ingreso": "03/07/24",
+        "contraseÃƒÆ’Ã‚Â±a": "1234"
+    },
+    "1245": {
+        "nombre": "Shir",
+        "apellido": "A",
+        "dni": "1245",
+        "fecha_ingreso": "03/07/24",
+        "contraseÃƒÂ±a": "147258"
+    },
+    "12": {
+        "nombre": "Ro",
+        "apellido": "G",
+        "dni": "12",
+        "fecha_ingreso": "03/07/24",
+        "contraseÃ±a": "34"
+    },
+    "789": {
+        "nombre": "Belen",
+        "apellido": "P",
+        "dni": "789",
+        "fecha_ingreso": "03/07/24",
+        "contraseña": "987"
+    }
+}
