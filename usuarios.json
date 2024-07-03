@@ -3,5 +3,41 @@
         "password": "1234",
         "fecha_ingreso": "03-07-2024",
         "rutinas": {}
+    },
+    "Rach": {
+        "password": "1234",
+        "fecha_ingreso": "03-07-2024",
+        "rutinas": {
+            "dia 1": [
+                {
+                    "nombre": "Prensa",
+                    "series": 3,
+                    "repeticiones": 10,
+                    "peso": 80.0
+                }
+            ],
+            "dia 2": [],
+            "dia 3": [],
+            "dia 4": [],
+            "dia 5": []
+        }
+    },
+    "Ana": {
+        "password": "1234",
+        "fecha_ingreso": "03-07-2024",
+        "rutinas": {
+            "dia 1": [
+                {
+                    "nombre": "Prensa",
+                    "series": 4,
+                    "repeticiones": 10,
+                    "peso": 50.0
+                }
+            ],
+            "dia 2": [],
+            "dia 3": [],
+            "dia 4": [],
+            "dia 5": []
+        }
     }
 }

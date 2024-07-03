@@ -5,17 +5,21 @@ Autores: Gaston Violla
          Nestor Schygiel  
 Version: 3.0
 '''
-
-import json
 import os
+import json
 import getpass
+import time
 from colorama import init, Fore, Style
 from datetime import datetime
 
 # Inicializar colorama
 init(autoreset=True)
 
-# Archivo JSON para guardar datos de usuarios
+def clear_console(): 
+    if os.name == 'nt': #os.name -en que sistema esta- #nt -windows nt-
+        os.system('cls') #para limpiar pantalla
+
+# Archivo json para guardar datos de usuarios
 USERS_FILE = 'usuarios.json'
 
 # Funciones para manejo de usuarios
@@ -30,6 +34,7 @@ def guardar_usuarios(usuarios):
         json.dump(usuarios, file, indent=4)
 
 def registrar_usuario(usuarios):
+    clear_console()
     print("="*45)
     print(Fore.GREEN + "Registro de usuario".center(45))
     username = input("Nombre de usuario: ")
@@ -42,14 +47,19 @@ def registrar_usuario(usuarios):
     guardar_usuarios(usuarios)
     print(Fore.GREEN + "Usuario registrado con éxito.".center(45))
     print("="*45)
+    time.sleep(2) # 2 segundos
+    clear_console()
     return username
 
 def iniciar_sesion(usuarios):
+    clear_console()
     print(Fore.GREEN + "Inicio de sesión".center(45))
     username = input("Nombre de usuario: ")
     password = getpass.getpass("Contraseña: ")
     if username in usuarios and usuarios[username]['password'] == password:
         print(Fore.GREEN + "Inicio de sesión exitoso.".center(45))
+        time.sleep(2)
+        clear_console()
         return username
     else:
         print(Fore.RED + "Usuario o contraseña incorrectos.")
@@ -101,6 +111,7 @@ rutina_5_dias = {
 }
 
 def mostrar_rutina_5_dias():
+    clear_console()
     for dia, ejercicios in rutina_5_dias.items():
         print(Fore.YELLOW + f"\n{dia}:")
         for ejercicio in ejercicios:
@@ -108,12 +119,14 @@ def mostrar_rutina_5_dias():
 
 # Funciones del menú
 def mostrar_rutina(rutina):
+    clear_console()
     for dia, ejercicios in rutina.items():
         print(Fore.YELLOW + f"\n{dia.capitalize()}:")
         for ejercicio in ejercicios:
             print(f"- {ejercicio['nombre']}: {ejercicio['series']} series de {ejercicio['repeticiones']} reps con {ejercicio['peso']} kg")
 
 def crear_rutina_personalizada(usuario, usuarios):
+    clear_console()
     print(Fore.CYAN + "Creando rutina personalizada...".center(45))
     print("*"*45)
     rutina = {}
@@ -135,6 +148,7 @@ def crear_rutina_personalizada(usuario, usuarios):
     print(Fore.GREEN + "Rutina personalizada creada con éxito.")
 
 def ver_rutina_personalizada(usuario, usuarios):
+    clear_console()
     print(Fore.CYAN + "Viendo rutina personalizada...")
     if 'rutinas' in usuarios[usuario]:
         mostrar_rutina(usuarios[usuario]['rutinas'])
@@ -143,6 +157,7 @@ def ver_rutina_personalizada(usuario, usuarios):
 
 def menu_principal(usuario, usuarios):
     while True:
+        print("="*45)
         print(Fore.YELLOW + "Menú principal".center(45))
         print(Fore.YELLOW + "\t1." + Fore.RESET + " Rutina por 5 días")
         print(Fore.YELLOW + "\t2." + Fore.RESET + " Crear rutina personalizada")
@@ -157,6 +172,8 @@ def menu_principal(usuario, usuarios):
             ver_rutina_personalizada(usuario, usuarios)
         elif opcion == "4":
             print(Fore.GREEN + "Saliendo del programa...")
+            time.sleep(2)
+            clear_console()
             break
         else:
             print(Fore.RED + "Opción no válida")
@@ -181,9 +198,12 @@ def main():
         elif opcion == "3":
             print("="*45)
             print(Fore.YELLOW + "Saliendo del programa, vuelva prontos...")
+            time.sleep(2)
+            clear_console()
             break
         else:
             print(Fore.RED + "Opción no válida")
 
 if __name__ == "__main__":
+    clear_console()
     main()

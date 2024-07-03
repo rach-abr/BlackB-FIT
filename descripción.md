@@ -11,19 +11,16 @@ El objetivo principal de este proyecto es proporcionar una herramienta sencilla 
 Este proyecto está dirigido para una amplia gama de usuarios interesadas mejorar su salud y forma física. 
 
 
-## 1. Funcionalidades Básicas
+## Funcionalidades Básicas
 
     1- Registro de Usuario - Permite a los nuevos usuarios registrarse proporcionando un nombre de usuario y una contraseña.
     2- Inicio de Sesión - Los usuarios registrados pueden iniciar sesión con su nombre de usuario y contraseña.
+    3- Menú Principal - Una vez que un usuario inicio sesión, puede acceder a las siguientes opciones:
 
-### 3. Menú Principal
-
-- Una vez que un usuario ha iniciado sesión, puede acceder a las siguientes opciones:
-
-  - **Rutina por 5 días**: Muestra una rutina predefinida para cinco días, con ejercicios específicos para diferentes grupos musculares.
-  - **Crear Rutina Personalizada**: Permite al usuario crear una rutina personalizada especificando los ejercicios, series, repeticiones y peso.
-  - **Ver Rutina Personalizada**: Muestra la rutina personalizada creada por el usuario.
-  - **Salir**: Cierra el programa.
+        **Rutina por 5 días**: Muestra una rutina predefinida para cinco días, con ejercicios específicos para diferentes grupos musculares.
+        **Crear Rutina Personalizada**: Permite al usuario crear una rutina personalizada especificando los ejercicios, series, repeticiones y peso.
+        **Ver Rutina Personalizada**: Muestra la rutina personalizada creada por el usuario.
+        **Salir**: Cierra el programa.
 
 ## Instalación
 
@@ -31,10 +28,7 @@ Este proyecto está dirigido para una amplia gama de usuarios interesadas mejora
 
 2. **Instalar las dependencias**:
 
-   Este programa utiliza la librería `colorama` para la coloración del texto en la terminal. Puedes instalarla usando `pip`:
-
-   ```bash
-   pip install colorama
+   Este programa utiliza la librería `colorama` para la coloración del texto en la terminal. Se instala usando: pip install colorama
 
 
 2. Persistencia de Datos
