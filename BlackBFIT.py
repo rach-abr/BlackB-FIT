@@ -5,6 +5,8 @@ Autores: Gaston Violla
          Nestor Schygiel  
 Version: 3.0
 '''
+'''agregar validacion de los numeros en series y repeticiones; en crear rutina agregar una funcion para salir y no hacer fin hasta el dia 5,
+en registrarse no debe dejar registrar usuario y contrasena vacias'''
 import os
 import json
 import getpass
@@ -16,11 +18,11 @@ from datetime import datetime
 init(autoreset=True)
 
 def clear_console(): 
-    if os.name == 'nt': #os.name -en que sistema esta- #nt -windows nt-
-        os.system('cls') #para limpiar pantalla
+    if os.name == "nt": #os.name -en que sistema esta- #nt -windows nt-
+        os.system("cls") #para limpiar pantalla
 
 # Archivo json para guardar datos de usuarios
-USERS_FILE = 'usuarios.json'
+USERS_FILE = "usuarios.json"
 
 # Funciones para manejo de usuarios
 def cargar_usuarios():
@@ -68,33 +70,33 @@ def iniciar_sesion(usuarios):
 # Definición de la rutina por 5 días
 rutina_5_dias = {
     "Día 1: Piernas y Glúteos": [
-        "Calentamiento: 5-10 minutos de cardio (cinta de correr, bicicleta estática, elíptica, etc.).",
+        "Calentamiento: 5-10 minutos de cardio (cinta de correr, bicicleta, elíptica, etc.).",
         "Sentadillas: 3 series de 12 repeticiones.",
         "Peso muerto: 3 series de 10 repeticiones.",
-        "Zancadas: 3 series de 12 repeticiones (cada pierna).",
+        "Estocadas: 3 series de 12 repeticiones (cada pierna).",
         "Elevaciones de cadera: 3 series de 15 repeticiones.",
-        "Extensiones de piernas: 3 series de 12 repeticiones.",
-        "Curl de piernas: 3 series de 12 repeticiones."
+        "Sillon de cuadriceps: 3 series de 12 repeticiones.",
+        "Camilla isquio: 3 series de 12 repeticiones."
     ],
     "Día 2: Abdominales y Cardio": [
         "Calentamiento: 5-10 minutos de cardio.",
         "Plancha: 3 series de 30-60 segundos.",
-        "Crunches: 3 series de 15 repeticiones.",
+        "Abdominales: 3 series de 15 repeticiones.",
         "Giros rusos: 3 series de 12 repeticiones (cada lado).",
         "Mountain climbers: 3 series de 12 repeticiones (cada lado).",
-        "Cardio de elección (correr, saltar la cuerda, bicicleta, etc.): 20-30 minutos."
+        "Cardio de elección (correr, saltar la soga, bicicleta, etc.): 20-30 minutos."
     ],
     "Día 3: Brazos y Hombros": [
         "Calentamiento: 5-10 minutos de cardio.",
-        "Press de hombros con mancuernas: 3 series de 12 repeticiones.",
+        "Press banca con mancuernas: 3 series de 12 repeticiones.",
         "Flexiones de brazos: 3 series de 10 repeticiones.",
-        "Curl de bíceps con mancuernas: 3 series de 12 repeticiones.",
+        "Biceps con mancuernas: 3 series de 12 repeticiones.",
         "Tríceps en polea alta: 3 series de 12 repeticiones.",
-        "Elevaciones laterales de hombros: 3 series de 12 repeticiones."
+        "Vuelos laterales: 3 series de 12 repeticiones."
     ],
     "Día 4: Espalda y Cardio": [
         "Calentamiento: 5-10 minutos de cardio.",
-        "Remo con barra: 3 series de 12 repeticiones.",
+        "Remo sentado: 3 series de 12 repeticiones.",
         "Dominadas asistidas o jalones en polea: 3 series de 10 repeticiones.",
         "Peso muerto rumano: 3 series de 10 repeticiones.",
         "Hip thrust con barra: 3 series de 12 repeticiones.",
@@ -127,7 +129,7 @@ def mostrar_rutina(rutina):
 
 def crear_rutina_personalizada(usuario, usuarios):
     clear_console()
-    print(Fore.CYAN + "Creando rutina personalizada...".center(45))
+    print(Fore.CYAN + "Creando rutina personalizada ╰(*°▽°*)╯".center(45)) #win + .1
     print("*"*45)
     rutina = {}
     for i in range(1, 6): #elemento que esta corriendo del 1 al 6 
@@ -135,17 +137,17 @@ def crear_rutina_personalizada(usuario, usuarios):
         ejercicios = []
         while True:
             ejercicio = {}
-            ejercicio['nombre'] = input(Fore.GREEN + f"Nombre del ejercicio para el {dia} (o 'fin' para terminar): ")
+            ejercicio['nombre'] = input(Style.BRIGHT + f"Nombre del ejercicio para el {dia} (o 'fin' para siguiente día): ")
             if ejercicio['nombre'].lower() == 'fin':
                 break
-            ejercicio['series'] = int(input("Número de series: "))
-            ejercicio['repeticiones'] = int(input("Número de repeticiones: "))
-            ejercicio['peso'] = float(input("Peso (kg): "))
+            ejercicio['series'] = int(input(Fore.CYAN + "Número de series: "))
+            ejercicio['repeticiones'] = int(input(Fore.CYAN + "Número de repeticiones: "))
+            ejercicio['peso'] = float(input(Fore.CYAN + "Peso (kg): "))
             ejercicios.append(ejercicio)
         rutina[dia] = ejercicios
     usuarios[usuario]['rutinas'] = rutina
     guardar_usuarios(usuarios)
-    print(Fore.GREEN + "Rutina personalizada creada con éxito.")
+    print(Fore.GREEN + "Rutina personalizada creada con éxito.".center(45))
 
 def ver_rutina_personalizada(usuario, usuarios):
     clear_console()
@@ -153,7 +155,7 @@ def ver_rutina_personalizada(usuario, usuarios):
     if 'rutinas' in usuarios[usuario]:
         mostrar_rutina(usuarios[usuario]['rutinas'])
     else:
-        print(Fore.RED + "No tiene ninguna rutina personalizada. Cree una primero.")
+        print(Fore.RED + "No tiene ninguna rutina personalizada. Cree una primero （︶^︶）")
 
 def menu_principal(usuario, usuarios):
     while True:
@@ -197,7 +199,7 @@ def main():
                 menu_principal(usuario, usuarios)
         elif opcion == "3":
             print("="*45)
-            print(Fore.YELLOW + "Saliendo del programa, vuelva prontos...")
+            print(Fore.YELLOW + "Saliendo del programa, vuelva prontos... (¬‿¬)")
             time.sleep(2)
             clear_console()
             break
@@ -207,3 +209,5 @@ def main():
 if __name__ == "__main__":
     clear_console()
     main()
+
+    
